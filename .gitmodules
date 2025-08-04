@@ -1,3 +1,6 @@
 [submodule "modules/mod-world-chat"]
 	path = modules/mod-world-chat
 	url = https://github.com/azerothcore/mod-world-chat.git
+[submodule "modules/mod-anticheat"]
+	path = modules/mod-anticheat
+	url = https://github.com/azerothcore/mod-anticheat.git
