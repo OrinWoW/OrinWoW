@@ -75,6 +75,15 @@ while [[ $# -gt 0 ]]; do
             shift
             ;;
 
+        # OrinWoW start: Add rebuild shortcut
+        rebuild)
+            set -x
+            docker compose up -d --build
+            set +x
+            shift
+            ;;
+        # OrinWoW end
+
         pull)
             set -x
             docker compose pull
