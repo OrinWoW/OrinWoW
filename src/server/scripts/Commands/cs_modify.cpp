@@ -573,6 +573,17 @@ public:
             return false;
         }
 
+        // OrinWoW start: clear money
+        if (money.compare("!") == 0) {
+            target->SetMoney(0);
+            handler->PSendSysMessage(LANG_YOU_TAKE_ALL_MONEY, handler->GetNameLink(target));
+            if (handler->needReportToTarget(target)) {
+                ChatHandler(target->GetSession()).PSendSysMessage(LANG_YOURS_ALL_MONEY_GONE, handler->GetNameLink());
+            }
+            return true;
+        }
+        // OrinWoW end
+
         auto IsExistWord = [](std::string_view line, std::initializer_list<std::string_view> words)
         {
             for (auto const& word : words)
