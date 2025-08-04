@@ -7,3 +7,6 @@
 [submodule "modules/mod-gain-honor-guard"]
 	path = modules/mod-gain-honor-guard
 	url = https://github.com/azerothcore/mod-gain-honor-guard.git
+[submodule "modules/mod-guildfunds"]
+	path = modules/mod-guildfunds
+	url = https://github.com/noisiver/mod-guildfunds.git
