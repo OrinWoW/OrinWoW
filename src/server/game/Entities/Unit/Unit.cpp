@@ -20624,7 +20624,12 @@ void Unit::BuildValuesUpdate(uint8 updateType, ByteBuffer* data, Player* target)
             if (index == UNIT_NPC_FLAGS)
             {
                 cacheValue.posPointers.UnitNPCFlagsPos = int32(fieldBuffer.wpos());
-                fieldBuffer << m_uint32Values[UNIT_NPC_FLAGS];
+                // OrinWoW Start: Disallow repair vendors without touching the database
+                uint32 npcflags = m_uint32Values[UNIT_NPC_FLAGS];
+                npcflags &= ~UNIT_NPC_FLAG_REPAIR;
+                fieldBuffer << npcflags;
+//                fieldBuffer << m_uint32Values[UNIT_NPC_FLAGS];
+                // OrinWoW end
             }
             else if (index == UNIT_FIELD_AURASTATE)
             {
@@ -20710,6 +20715,7 @@ void Unit::PatchValuesUpdate(ByteBuffer& valuesUpdateBuf, BuildValuesCachePosPoi
     if (creature && posPointers.UnitNPCFlagsPos >= 0)
     {
         uint32 appendValue = m_uint32Values[UNIT_NPC_FLAGS];
+        appendValue &= ~UNIT_NPC_FLAG_REPAIR; // OrinWoW: Disallow repair vendors without touching the database
 
         if (sWorld->getIntConfig(CONFIG_INSTANT_TAXI) == 2 && appendValue & UNIT_NPC_FLAG_FLIGHTMASTER)
             appendValue |= UNIT_NPC_FLAG_GOSSIP; // flight masters need NPC gossip flag to show instant flight toggle option

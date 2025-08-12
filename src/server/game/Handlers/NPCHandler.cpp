@@ -890,6 +890,11 @@ void WorldSession::HandleRepairItemOpcode(WorldPacket& recvData)
 
     recvData >> npcGUID >> itemGUID >> guildBank;
 
+    // OrinWoW start: Disallow repair vendors without touching the database
+    LOG_ERROR("network", "WORLD: HandleRepairItemOpcode - Repairs are not permitted!", npcGUID.ToString());
+    return;
+    // OrinWoW end
+
     Creature* unit = GetPlayer()->GetNPCIfCanInteractWith(npcGUID, UNIT_NPC_FLAG_REPAIR);
     if (!unit)
     {
