@@ -10,3 +10,6 @@
 [submodule "modules/mod-guildfunds"]
 	path = modules/mod-guildfunds
 	url = https://github.com/noisiver/mod-guildfunds.git
+[submodule "modules/mod-starter-wands"]
+	path = modules/mod-starter-wands
+	url = https://github.com/Protonull/mod-starter-wands.git
